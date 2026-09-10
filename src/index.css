@@ -1,30 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-display: 'Playfair Display', Georgia, serif;
+  /* Original color palette - warm, literary, distinctive */
+  --color-paper: #F5EDE0;
+  --color-paper-dark: #E8DFD0;
+  --color-ink: #1C1917;
+  --color-ink-light: #44403C;
+  --color-ink-muted: #78716C;
+  --color-terracotta: #B8432F;
+  --color-terracotta-light: #D4654F;
+  --color-forest: #2D4A3E;
+  --color-forest-light: #4A6B5C;
+  --color-gold: #C9A876;
+  --color-gold-light: #E0C49A;
+  --color-mustard: #E8B84D;
+  --color-cream: #FAF6F0;
+  
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-handwritten: 'Caveat', cursive;
-  
-  /* Aardvark-inspired color palette */
-  --color-yellow: #F9A220;
-  --color-yellow-light: #FFD480;
-  --color-pink: #FF6B9D;
-  --color-pink-bright: #FF4081;
-  --color-pink-soft: #FFE4EC;
-  --color-periwinkle: #8B9DC3;
-  --color-periwinkle-light: #B8C5E0;
-  --color-olive: #8B9A46;
-  --color-olive-light: #C5D17A;
-  --color-cyan: #4ECDC4;
-  --color-cyan-light: #7FE5DE;
-  --color-orange: #F26B22;
-  --color-red: #E62701;
-  --color-green: #6ABF4C;
-  --color-purple: #32225F;
-  --color-navy: #00102C;
-  --color-cream: #FFF8E7;
-  --color-ink: #1A1A1A;
 }
 
 * {
@@ -44,55 +40,59 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-cream);
+  background-color: var(--color-paper);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Lenis smooth scroll */
-html.lenis, html.lenis body {
-  height: auto;
+/* Custom cursor */
+@media (hover: hover) {
+  body {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="%23B8432F"/></svg>') 12 12, auto;
+  }
+  a, button, [role="button"] {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="8" fill="%23B8432F" opacity="0.3"/><circle cx="16" cy="16" r="4" fill="%23B8432F"/></svg>') 16 16, pointer;
+  }
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* Custom scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--color-cream); }
-::-webkit-scrollbar-thumb { background: var(--color-yellow); border-radius: 5px; }
+::-webkit-scrollbar-track { background: var(--color-paper); }
+::-webkit-scrollbar-thumb { background: var(--color-terracotta); border-radius: 5px; }
 
-/* Typography */
-.font-display { font-family: var(--font-display); }
-.font-handwritten { font-family: var(--font-handwritten); }
-
-.text-hero {
+/* Typography system */
+.text-display-xl {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 900;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.03em;
 }
 
-.text-section-title {
+.text-display-lg {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 900;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.text-display-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 500;
   line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.text-editorial {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.4;
+  font-style: italic;
 }
 
 /* Animations */
@@ -102,54 +102,50 @@ html.lenis, html.lenis body {
 }
 
 @keyframes wiggle {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
 }
 
-@keyframes slide-up {
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-wiggle { animation: wiggle 3s ease-in-out infinite; }
 
-.animate-float { animation: float 4s ease-in-out infinite; }
-.animate-wiggle { animation: wiggle 2s ease-in-out infinite; }
-.animate-slide-up { animation: slide-up 0.6s ease-out forwards; }
-
-/* Book card ears */
-.book-ear-left, .book-ear-right {
-  position: absolute;
-  top: -15px;
-  width: 30px;
-  height: 35px;
-}
-.book-ear-left { left: 20px; }
-.book-ear-right { right: 20px; transform: scaleX(-1); }
-
-/* Handwritten annotation style */
-.annotation {
-  font-family: var(--font-handwritten);
-  font-size: 1.5rem;
-  transform: rotate(-5deg);
-  display: inline-block;
-}
-
-/* Wave backgrounds */
-.wave-bg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-
-/* Focus styles */
-*:focus-visible {
-  outline: 3px solid var(--color-yellow);
-  outline-offset: 2px;
-}
-
+/* Selection */
 ::selection {
-  background-color: var(--color-yellow);
-  color: var(--color-ink);
+  background-color: var(--color-terracotta);
+  color: var(--color-paper);
+}
+
+/* Focus */
+*:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 3px;
+}
+
+/* Hide scrollbar utility */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Line clamp */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
