@@ -4,15 +4,7 @@ import { Search, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { books, allGenres } from '../data';
 import { useApp } from '../context/AppContext';
-
-const bookCovers = [
-  'https://image.qwenlm.ai/generated-images/e6dc80dc-99b5-4195-9b2b-1e199d5dae5c/_result.png',
-  'https://image.qwenlm.ai/generated-images/66f57a3f-0918-4145-8d07-a5c2f9119ec6/_result.png',
-  'https://image.qwenlm.ai/generated-images/31df68aa-3b3d-40f9-939d-e3af54aa01dd/_result.png',
-  'https://image.qwenlm.ai/generated-images/505c86c2-61ad-491f-af8f-3c4d2d48bd91/_result.png',
-  'https://image.qwenlm.ai/generated-images/91748da0-0d65-4ffd-a53f-dc19be3bd073/_result.png',
-  'https://image.qwenlm.ai/generated-images/c5a3d061-dacf-42aa-87fb-7d4075a1921f/_result.png',
-];
+import BookCover from '../components/ui/BookCover';
 
 type SortOption = 'popular' | 'newest' | 'rating' | 'title';
 
@@ -135,36 +127,7 @@ export default function BooksPage() {
                     className="group relative"
                     style={{ transform: `rotate(${[0, -0.5, 0.5, -0.3, 0.3, -0.5][i % 6]}deg)` }}
                   >
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
-                      <img
-                        src={bookCovers[i % bookCovers.length]}
-                        alt={book.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      
-                      <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="flex gap-2 mb-3">
-                          {book.genres.slice(0, 2).map(genre => (
-                            <span key={genre} className="px-3 py-1 bg-paper/90 text-ink text-xs font-medium rounded-full">
-                              {genre}
-                            </span>
-                          ))}
-                        </div>
-                        <button
-                          onClick={() => addToBox(book)}
-                          className="w-full py-3 bg-terracotta text-paper font-medium rounded-full hover:bg-terracotta-light transition-colors"
-                        >
-                          Add to Box — ${book.price}
-                        </button>
-                      </div>
-
-                      {book.monthlyPick && (
-                        <div className="absolute top-4 left-4 px-3 py-1.5 bg-mustard text-ink text-xs font-bold rounded-full">
-                          Monthly Pick
-                        </div>
-                      )}
-                    </div>
+                    <BookCover book={book} className="rounded-2xl" />
 
                     <div className="mt-4 space-y-1">
                       <h3 className="font-display text-xl font-semibold text-ink group-hover:text-terracotta transition-colors">

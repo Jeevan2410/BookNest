@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { books, genres } from '../data';
 import { useApp } from '../context/AppContext';
+import BookCover from '../components/ui/BookCover';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,15 +12,6 @@ gsap.registerPlugin(ScrollTrigger);
 const heroImage = 'https://image.qwenlm.ai/generated-images/b4c88d12-8c57-4a71-a8e4-063ebfe4c285/_result.png';
 const mascotImage = 'https://image.qwenlm.ai/generated-images/81f0848f-3ba4-481c-81a1-472cddcb079a/_result.png';
 const boxImage = 'https://image.qwenlm.ai/generated-images/2606d09f-47d8-4802-85e0-1f5899ea6755/_result.png';
-
-const bookCovers = [
-  'https://image.qwenlm.ai/generated-images/e6dc80dc-99b5-4195-9b2b-1e199d5dae5c/_result.png',
-  'https://image.qwenlm.ai/generated-images/66f57a3f-0918-4145-8d07-a5c2f9119ec6/_result.png',
-  'https://image.qwenlm.ai/generated-images/31df68aa-3b3d-40f9-939d-e3af54aa01dd/_result.png',
-  'https://image.qwenlm.ai/generated-images/505c86c2-61ad-491f-af8f-3c4d2d48bd91/_result.png',
-  'https://image.qwenlm.ai/generated-images/91748da0-0d65-4ffd-a53f-dc19be3bd073/_result.png',
-  'https://image.qwenlm.ai/generated-images/c5a3d061-dacf-42aa-87fb-7d4075a1921f/_result.png',
-];
 
 // Fox mascot SVG - appears throughout
 function FoxMascot({ className = '', size = 80 }: { className?: string; size?: number }) {
@@ -272,40 +264,7 @@ export default function HomePage() {
                 className="group relative"
                 style={{ transform: `rotate(${[0, -1, 1, -0.5, 0.5, -1][i % 6]}deg)` }}
               >
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
-                  <img
-                    src={bookCovers[i % bookCovers.length]}
-                    alt={book.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="space-y-3">
-                      <div className="flex gap-2">
-                        {book.genres.slice(0, 2).map(genre => (
-                          <span key={genre} className="px-3 py-1 bg-paper/90 text-ink text-xs font-medium rounded-full">
-                            {genre}
-                          </span>
-                        ))}
-                      </div>
-                      <button
-                        onClick={() => addToBox(book)}
-                        className="w-full py-3 bg-terracotta text-paper font-medium rounded-full hover:bg-terracotta-light transition-colors"
-                      >
-                        Add to Box — ${book.price}
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Monthly pick badge */}
-                  {book.monthlyPick && (
-                    <div className="absolute top-4 left-4 px-3 py-1.5 bg-mustard text-ink text-xs font-bold rounded-full">
-                      Monthly Pick
-                    </div>
-                  )}
-                </div>
+                <BookCover book={book} className="rounded-2xl" />
 
                 {/* Book info */}
                 <div className="mt-4 space-y-1">
