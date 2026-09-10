@@ -2,7 +2,8 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Heart, Star, BookOpen, Calendar, FileText, Plus } from 'lucide-react';
 import { books } from '../data';
-import { BookCover, Rating, BookBadge, BookCard } from '../components/ui/BookCard';
+import { Rating, BookBadge, BookCard } from '../components/ui/BookCard';
+import BookCover from '../components/ui/BookCover';
 import { useApp } from '../context/AppContext';
 
 export default function BookDetailPage() {
@@ -38,15 +39,8 @@ export default function BookDetailPage() {
           {/* Left - Cover */}
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <div className="sticky top-24">
-              <div className="relative mx-auto w-64 h-[22rem] lg:w-72 lg:h-[26rem]">
-                <div className="absolute inset-0 rounded-2xl shadow-2xl overflow-hidden" style={{ backgroundColor: book.coverColor }}>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                    <div className="w-12 h-0.5 bg-white/30 mb-4" />
-                    <span className="font-serif text-white text-xl leading-tight">{book.title}</span>
-                    <div className="w-8 h-0.5 bg-white/20 my-3" />
-                    <span className="text-white/60 text-sm">{book.author}</span>
-                  </div>
-                </div>
+              <div className="relative mx-auto w-64 lg:w-72">
+                <BookCover book={book} className="rounded-2xl shadow-2xl" />
               </div>
             </div>
           </motion.div>
