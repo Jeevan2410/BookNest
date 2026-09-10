@@ -1,6 +1,7 @@
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AppProvider } from './context/AppContext';
+import { SmoothScrollProvider } from './hooks/useSmoothScroll';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import SearchModal from './components/ui/SearchModal';
@@ -77,9 +78,11 @@ function AppContent() {
 export default function App() {
   return (
     <HashRouter>
-      <AppProvider>
-        <AppContent />
-      </AppProvider>
+      <SmoothScrollProvider>
+        <AppProvider>
+          <AppContent />
+        </AppProvider>
+      </SmoothScrollProvider>
     </HashRouter>
   );
 }
